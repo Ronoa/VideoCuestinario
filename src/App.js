@@ -1,121 +1,152 @@
 import React, { Component } from 'react';
-import { Button, Form, Input,Row,Col } from 'antd';
+import { Button, Form} from 'antd';
 import 'antd/dist/antd.css'
 // import './App.css';
+import HeaderVOD from './components/HeaderVOD'
+import VOD from './components/VOD'
+import {solicitaraccesodispositivos} from './components/baseconfig'
 
 class App extends Component {
-  state ={
+  state = {
+    recording: false,
+    dispositivos: {},
+    mediaRecorder: {},
+    chunks: [],    
+    datamedia:[],
+    isrender:true,
+    ismedia:false,
+
+    pregunta1:[],
+    pregunta2:[],
+    pregunta3:[],
+    pregunta4:[],
+  }
+
+   
+
+  componentDidMount() {
+    this.parametrosvideo();
     
   }
 
- 
-
-
-componentDidMount(){
-  this.parametrosvideo();  
-}
-
-async parametrosvideo(){ 
-  if (navigator.mediaDevices === undefined) {
-    console.log("undefined")
-  }else{
-    this.detectardispositivos();
+  async parametrosvideo() {
+    if (navigator.mediaDevices === undefined) {
+      console.log("undefined")
+    } else {
+      this.detectardispositivos();
+    }
+    this.solicitaraccesodispositivos();
   }
-  this.solicitaraccesodispositivos();
-}
-
-// var p = navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-async detectardispositivos(){
-  navigator.mediaDevices.enumerateDevices()
-  .then(devices => {
-      devices.forEach(device=>{
+  
+  async detectardispositivos() {
+    navigator.mediaDevices.enumerateDevices()
+      .then(devices => {
+        devices.forEach(device => {
           console.log(device.kind.toUpperCase(), device.label);
-      })
-  })
-  .catch(err=>{
-      console.log("ERR",err.name, err.message);
-  })
-}
-
-
-solicitaraccesodispositivos(){
-let constraintObj ={
-  audio:true,
-  video:{
-    facingMode:'user',
-    width: { min: 640, ideal: 1280, max: 1920 },
-    height: { min: 480, ideal: 720, max: 1080 } 
-  }
-}
-  navigator.mediaDevices.getUserMedia(constraintObj)
-        .then(function(mediaStreamObj) {
-            //connect the media stream to the first video element
-            let video = document.querySelector('video');
-            if ("srcObject" in video) {
-                video.srcObject = mediaStreamObj;
-            } else {
-                //old version
-                video.src = window.URL.createObjectURL(mediaStreamObj);
-            }
-            
-            video.onloadedmetadata = function(ev) {
-                //show in the video element what is being captured by the webcam
-                video.play();
-            };
-            
-            //add listeners for saving video/audio
-            let start = document.getElementById('btnStart');
-            let stop = document.getElementById('btnStop');
-            let vidSave = document.getElementById('vid2');
-            let mediaRecorder = new MediaRecorder(mediaStreamObj);
-            let chunks = [];
-            
-            start.addEventListener('click', (ev)=>{
-                mediaRecorder.start();
-                console.log(mediaRecorder.state);
-            })
-            stop.addEventListener('click', (ev)=>{
-                mediaRecorder.stop();
-                console.log(mediaRecorder.state);
-            });
-            mediaRecorder.ondataavailable = function(ev) {
-              console.log(ev.data)  
-              chunks.push(ev.data);
-            }
-            mediaRecorder.onstop = (ev)=>{
-                let blob = new Blob(chunks, { 'type' : 'video/mp4;' });
-                chunks = [];
-                let videoURL = window.URL.createObjectURL(blob);
-                vidSave.src = videoURL;
-            }
         })
-        .catch(function(err) { 
-            console.log(err.name, err.message); 
-        });
-}
+      })
+      .catch(err => {
+        console.log("ERR", err.name, err.message);
+      })
+  }
+
+  async  solicitaraccesodispositivos() {
+    let constraintObj = {
+      audio: true,
+      video: {
+        facingMode: 'user',
+        
+      }
+    }
+    const resultmedia = await navigator.mediaDevices.getUserMedia(constraintObj)
+      .catch(function (err) {
+        console.log(err.name, err.message);
+      });
+    let multi = await resultmedia;
+
+    if (multi === undefined) {
+      alert('se requiere activar camara y audio')
+    }
 
 
+    this.setState({ dispositivos: multi,ismedia:true }, () => this.updateDevices())
+
+  }
+
+  updateDevices() {
+    let video = document.querySelector('video');
+
+    console.log("video", video)
+    console.log("dispositivos66666", this.state.dispositivos)
+
+    if ("srcObject" in video) {
+      video.srcObject = this.state.dispositivos;
+    } else {
+      video.src = window.URL.createObjectURL(this.state.dispositivos);
+    }
+
+    let mediaRecorder = new MediaRecorder(this.state.dispositivos);
+    this.setState({
+      mediaRecorder
+    })
+
+    let chunks = [];
+    let actual = this;
+    mediaRecorder.ondataavailable = function (ev) {
+      console.log(ev.data)
+      chunks.push(ev.data);
+      actual.setState({ chunks })
+    }
+  }
+
+  caputara = (e) => {
+    let vidSave = document.getElementById('vid2');
+    if (!this.state.recording) {
+      this.state.mediaRecorder.start();
+      this.setState({ recording: true })
+
+    } else {
+      this.state.mediaRecorder.stop();
+      this.setState({ recording: false })
+
+       let actual = this;
+      this.state.mediaRecorder.onstop = (ev) => {
+        let blob = new Blob(this.state.chunks, { 'type': 'video/mp4;' }); 
+        actual.setState({pregunta1:blob, chunks: [] })        
+        
+        let videoURL = window.URL.createObjectURL(this.state.pregunta1);        
+        vidSave.src=null;
+        vidSave.src = videoURL;        
+      }
+    }
+  }
 
   render() {
-    console.log("2", this.state.constraintObj);
-    
+
     return (
       <div className="App">
-        
+{/* 
         <Form layout="horizontal">
           <div>
-            <Button type="primary" shape="circle" icon="video-camera" id="btnStart"></Button>
-            <Button type="secundari" shape="circle" icon="pause" id="btnStop"></Button>
+            <Button type="primary"  icon="video-camera" id="btnStart" onClick={this.caputara}>{this.state.recording?'Stop':'Iniciar'}</Button>
             <br></br>
-            <video controls></video>
+            <video controls autoPlay></video>
           </div>
           <br></br>
           <video id="vid2" controls></video>
           <Button type="primary">Guardar video</Button>
+        </Form> */}
 
-          <h1>hola mundo</h1>
-
-        </Form>
+        <HeaderVOD />
+        {this.state.ismedia>0 &&
+          <VOD  
+            dispositivos={this.state.dispositivos}
+            mediaRecorder={this.state.mediaRecorder}
+            
+          />
+        }
+        <Button type="primary">Guardar video</Button>
+        <div className="siguientepage"><a >Skip</a></div>
       </div>
     );
   }

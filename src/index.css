@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#vid3 {
+margin: 0px 10px;
+width: calc( 100% - 20px );
+height: 99%;
+position: absolute;
+}
