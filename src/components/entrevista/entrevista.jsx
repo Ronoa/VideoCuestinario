@@ -4,13 +4,12 @@ import {
 } from 'react';
 
 /* Templates */
-import homeTemplate from './home.pug';
-
+import homeTemplate from './entrevista.pug';
 /* AntD components */
 import { Layout} from 'antd';
 
 /* Styles */
-import './home.styl';
+import './entrevista.styl';
 
 const { Header } = Layout;
 

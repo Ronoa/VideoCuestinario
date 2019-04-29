@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 
 import { PageHeader, Progress } from 'antd';
 
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-const PageHeaderVOD = styled(PageHeader)`
+// const PageHeaderVOD = styled(PageHeader)`
 
-  & .ant-page-header-title-view-extra{
-    width: 15%;
-  }
-  & .ant-page-header-title-view-title {
-    color: #262626;
-  }
-  & .ant-page-header-title-view-subtitle{
-    color: #595959;
-  }
+//   & .ant-page-header-title-view-extra{
+//     width: 15%;
+//   }
+//   & .ant-page-header-title-view-title {
+//     color: #262626;
+//   }
+//   & .ant-page-header-title-view-subtitle{
+//     color: #595959;
+//   }
 
-`
+// `
 
 class HeaderVOD extends Component {
     
@@ -24,7 +24,7 @@ class HeaderVOD extends Component {
     return (
       <div>
         {/* <Contender>dasdasd</Contender> */}
-        <PageHeaderVOD
+        {/* <PageHeaderVOD
           onBack={
             () =>  console.log("hola")
           }
@@ -35,7 +35,7 @@ class HeaderVOD extends Component {
           ]}
         >
           
-        </PageHeaderVOD>
+        </PageHeaderVOD> */}
       </div>
     );
   }

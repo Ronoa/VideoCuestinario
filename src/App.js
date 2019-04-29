@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
-import { Button, Form} from 'antd';
+import { Button, Form } from 'antd';
 import 'antd/dist/antd.css'
 // import './App.css';
 import HeaderVOD from './components/HeaderVOD'
 import VOD from './components/VOD'
-import {solicitaraccesodispositivos} from './components/baseconfig'
+// import {solicitaraccesodispositivos} from './components/baseconfig'
+import Homebase from './components/home/home';
+import Entrevista from './components/entrevista/entrevista';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
   state = {
     recording: false,
     dispositivos: {},
     mediaRecorder: {},
-    chunks: [],    
-    datamedia:[],
-    isrender:true,
-    ismedia:false,
+    chunks: [],
+    datamedia: [],
+    isrender: true,
+    ismedia: false,
 
-    pregunta1:[],
-    pregunta2:[],
-    pregunta3:[],
-    pregunta4:[],
+    pregunta1: [],
+    pregunta2: [],
+    pregunta3: [],
+    pregunta4: [],
   }
 
-   
+
 
   componentDidMount() {
-    this.parametrosvideo();
-    
+    // this.parametrosvideo();
+
   }
 
   async parametrosvideo() {
@@ -37,7 +40,7 @@ class App extends Component {
     }
     this.solicitaraccesodispositivos();
   }
-  
+
   async detectardispositivos() {
     navigator.mediaDevices.enumerateDevices()
       .then(devices => {
@@ -55,7 +58,7 @@ class App extends Component {
       audio: true,
       video: {
         facingMode: 'user',
-        
+
       }
     }
     const resultmedia = await navigator.mediaDevices.getUserMedia(constraintObj)
@@ -69,7 +72,7 @@ class App extends Component {
     }
 
 
-    this.setState({ dispositivos: multi,ismedia:true }, () => this.updateDevices())
+    this.setState({ dispositivos: multi, ismedia: true }, () => this.updateDevices())
 
   }
 
@@ -109,14 +112,14 @@ class App extends Component {
       this.state.mediaRecorder.stop();
       this.setState({ recording: false })
 
-       let actual = this;
+      let actual = this;
       this.state.mediaRecorder.onstop = (ev) => {
-        let blob = new Blob(this.state.chunks, { 'type': 'video/mp4;' }); 
-        actual.setState({pregunta1:blob, chunks: [] })        
-        
-        let videoURL = window.URL.createObjectURL(this.state.pregunta1);        
-        vidSave.src=null;
-        vidSave.src = videoURL;        
+        let blob = new Blob(this.state.chunks, { 'type': 'video/mp4;' });
+        actual.setState({ pregunta1: blob, chunks: [] })
+
+        let videoURL = window.URL.createObjectURL(this.state.pregunta1);
+        vidSave.src = null;
+        vidSave.src = videoURL;
       }
     }
   }
@@ -124,8 +127,12 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-{/* 
+      <Router>
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/videoentrevista" component={videoentrevista} />
+        <div className="App">
+          {/* 
         <Form layout="horizontal">
           <div>
             <Button type="primary"  icon="video-camera" id="btnStart" onClick={this.caputara}>{this.state.recording?'Stop':'Iniciar'}</Button>
@@ -137,19 +144,39 @@ class App extends Component {
           <Button type="primary">Guardar video</Button>
         </Form> */}
 
-        <HeaderVOD />
+          {/* <HeaderVOD />
         {this.state.ismedia>0 &&
           <VOD  
             dispositivos={this.state.dispositivos}
             mediaRecorder={this.state.mediaRecorder}
             
           />
-        }
-        <Button type="primary">Guardar video</Button>
-        <div className="siguientepage"><a >Skip</a></div>
-      </div>
+        } */}
+          {/* <Button type="primary">Guardar video</Button> */}
+          {/* <Homebase></Homebase> */}
+        </div>
+      </Router>
     );
   }
+}
+
+function Header() {
+  return (
+    <ul>
+      <li>
+        <Link to="/">Inicio</Link>
+      </li> 
+      <li>
+        <Link to="/videoentrevista">video</Link>
+      </li>     
+    </ul>
+  );
+}
+function Home() {
+  return <Homebase></Homebase>;
+}
+function videoentrevista() {
+  return <Entrevista></Entrevista>;
 }
 
 export default App;
