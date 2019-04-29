@@ -1,0 +1,14 @@
+//- AntD trabaja con 24 rejillas
+Header(className='header')
+	h1 Video Cuestionario 
+	h3 BCP - Sub Gerente de Ingeniería de Defensa de ciberseguridad
+
+.content 	
+	form.form-tutor
+		input(type='hidden', name='id', value='{Math.floor(Math.random()*100)}')
+		input(type='text', placeholder='Nombre del curso', name='name', required)
+		input(type='text', placeholder='Profesor', name='teacher', required)
+		input(type='submit', value='Enviar')
+		
+	
+	CoursesList(courses='{this.state.courses}')
