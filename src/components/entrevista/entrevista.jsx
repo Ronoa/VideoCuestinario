@@ -8,7 +8,7 @@ import {
 /* Templates */
 import Entrevistapug from './entrevista.pug';
 /* AntD components */
-import { Layout} from 'antd';
+import { Layout, Row, Col} from 'antd';
 
 /* Styles */
 import './entrevista.styl';
@@ -32,6 +32,8 @@ class App extends Component {
   render () {
     const propsAndComponents = {
       Header,
+      Row,
+      Col
     }
 
     /* Return  template */

@@ -3,11 +3,13 @@ import {
   // PropTypes
 } from 'react';
 
+import CoursesList  from '../courses-list/courses-list';
+
 /* Templates */
 import homeTemplate from './home.pug';
 
 /* AntD components */
-import { Layout} from 'antd';
+import { Layout, Row, Col} from 'antd';
 
 /* Styles */
 import './home.styl';
@@ -22,7 +24,16 @@ class App extends Component {
 
     /* variables de estado */
     this.state = {
-
+      courses : [
+        {
+          id : 1,
+          name : 'react desde cero'
+        },
+        {
+          id : 2,
+          name : 'nodejs desde cero'
+        }
+      ]
     }
   }
 
@@ -32,13 +43,16 @@ class App extends Component {
       courses,
     } = this.props;
 
-    const propsAndComponents = {      
-      Header,      
+    const propsAndComponents = {
+      courses,
+      Header,
+      CoursesList,
+      Row,
+      Col
     }
-    
+
     /* Return  template */
-    return homeTemplate.call(this, propsAndComponents);
-    
+    return homeTemplate.call(this, propsAndComponents );
   }
 }
 /* Definimos los  tipos de propiedades */
