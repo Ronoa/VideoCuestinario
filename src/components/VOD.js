@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
-import VideoPresentacion from './VideoPresentacion'
+// import { Row, Col } from 'antd';
+// import VideoPresentacion from './VideoPresentacion'
 import '../css/mystyle.css'
 // import styled from 'styled-components'
 
@@ -30,11 +30,11 @@ class VOD extends Component {
       <div>
         {/* <VideoContainer>
           <VideoHeader>Cuestionario para Diseñador UX / UI</VideoHeader>
-          <VideoPresentacion 
+          <VideoPresentacion
             dispositivos={this.props.dispositivos}
             mediaRecorder={this.props.mediaRecorder}
           />
-          
+
         </VideoContainer> */}
       </div>
     );
