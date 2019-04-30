@@ -128,71 +128,47 @@ class App extends Component {
 
     return (
       <Router>
-        {/* <Header /> */}
         <Route exact path="/" component={Home} />
         <Route exact path="/videoentrevista" component={videoentrevista} />
-        <div className="App">
-          {/* 
-        <Form layout="horizontal">
-          <div>
-            <Button type="primary"  icon="video-camera" id="btnStart" onClick={this.caputara}>{this.state.recording?'Stop':'Iniciar'}</Button>
-            <br></br>
-            <video controls autoPlay></video>
-          </div>
-          <br></br>
-          <video id="vid2" controls></video>
-          <Button type="primary">Guardar video</Button>
-        </Form> */}
 
-          {/* <HeaderVOD />
-        {this.state.ismedia>0 &&
-          <VOD  
-            dispositivos={this.state.dispositivos}
-            mediaRecorder={this.state.mediaRecorder}
-            
-          />
-        } */}
-          {/* <Button type="primary">Guardar video</Button> */}
-          {/* <Homebase></Homebase> */}
-        </div>
       </Router>
     );
   }
 }
 
-function Header() {
-  return (
-    <ul>
-      <li>
-        <Link to="/">Inicio</Link>
-      </li> 
-      <li>
-        <Link to="/videoentrevista">video</Link>
-      </li>     
-    </ul>
-  );
-}
+// function Header() {
+//   return (
+//     <ul>
+//       <li>
+//         <Link to="/">Inicio</Link>
+//       </li>
+//       <li>
+//         <Link to="/videoentrevista">video</Link>
+//       </li>
+//     </ul>
+//   );
+// }
 function Home() {
-  return( 
+  return(
     <>
     <Homebase></Homebase>
+    <Contenido></Contenido>
     <Footer></Footer>
-    <Contenido></Contenido>    
     </>
   )
 }
 function videoentrevista() {
   return (
-    <>
+    <div>
     <Homebase></Homebase>
     <Carousel  afterChange={onChange}>
-    <div><h3><Entrevista></Entrevista></h3></div>
-    <div><h3><Entrevista></Entrevista></h3></div>
-    <div><h3><Entrevista></Entrevista></h3></div>
-    <div><h3><Entrevista></Entrevista></h3></div>
+    <div className="slide" id="slide"><Entrevista></Entrevista></div>
+    <div className="slide"><Entrevista></Entrevista></div>
+    <div className="slide"><Entrevista></Entrevista></div>
+    <div className="slide"><Entrevista></Entrevista></div>
     </Carousel>
-    
-    </>
+
+    </div>
   );
 }
 function onChange(a, b, c) {

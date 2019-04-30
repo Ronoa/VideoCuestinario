@@ -30,12 +30,12 @@ class App extends Component {
   }
 
   render () {
-    const propsAndComponents = {      
-      Header
+    const propsAndComponents = {
+      Header,
     }
-    
+
     /* Return  template */
-    return Entrevistapug.call(this, propsAndComponents);  
+    return Entrevistapug.call(this, propsAndComponents);
   }
 }
 /* Definimos los  tipos de propiedades */

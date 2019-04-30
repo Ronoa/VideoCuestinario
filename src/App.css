@@ -40,18 +40,26 @@
 }
 
 /* .ant-carousel .slick-dots li.slick-active button{
- 
-  
+
+
 } */
 
 .slick-slider .slick-initialized .slick-dots{
   color: #1890FF;
+  background: black;
+}
+.ant-carousel .slick-list .slick-slide.slick-active {
+  background: transparent;
 }
 .ant-carousel .slick-dots li button{
   background-color: #1890FF;
   height: 12px;	width: 12px;
   border: none;
   border-radius: 100%;
-  
+
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.15);
+}
+
+Carousel h3 {
+  background: black !important;
 }

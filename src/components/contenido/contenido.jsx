@@ -10,7 +10,7 @@ import homeTemplate from './contenido.pug';
 import { Layout} from 'antd';
 
 /* Styles */
-import './contenido.styl';
+// import './contenido.styl';
 
 const { Header } = Layout;
 
@@ -32,13 +32,13 @@ class App extends Component {
       courses,
     } = this.props;
 
-    const propsAndComponents = {      
-      Header,      
+    const propsAndComponents = {
+      Header,
     }
-    
+
     /* Return  template */
     return homeTemplate.call(this, propsAndComponents);
-    
+
   }
 }
 /* Definimos los  tipos de propiedades */
