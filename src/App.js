@@ -20,6 +20,13 @@ class App extends Component {
     datamedia: [],
     isrender: true,
     ismedia: false,
+    preguntasentrevista:[
+      {id:1,pregunta:'¿Consideras tener una amplia experiencia en el tema de diseño de productos digitales?',estado:false},
+      {id:2,pregunta:'¿En donde te ves en 5 años?',estado:false},
+      {id:3,pregunta:'¿Cuáles son tus metas?',estado:false},
+      {id:4,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI? Has tenido experiencia',estado:false},
+      {id:5,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI?',estado:false}],
+
 
     pregunta1: [],
     pregunta2: [],
@@ -157,22 +164,28 @@ function Home() {
     </>
   )
 }
-function videoentrevista() {
+function videoentrevista(props) {
+  console.log("aqui1",props.state)
+  const preguntasentrevista=[]
+  
   return (
     <div>
     <Homebase></Homebase>
-    <Carousel  afterChange={onChange}>
-    <div className="slide" id="slide"><Entrevista></Entrevista></div>
-    <div className="slide"><Entrevista></Entrevista></div>
-    <div className="slide"><Entrevista></Entrevista></div>
-    <div className="slide"><Entrevista></Entrevista></div>
+    {preguntasentrevista &
+    // afterChange={onChange}
+    <Carousel  >
+    {preguntasentrevista.map((list,l)=>
+    <div key={l}  id={list.id}>
+      {/* <Entrevista/> */}
+    </div>    
+    )}
     </Carousel>
-
+    }
     </div>
   );
 }
-function onChange(a, b, c) {
-  console.log(a, b, c);
+function onChange(a, b, c,d,e) {
+  console.log(a, b, c,d,e);
 }
 
 export default App;

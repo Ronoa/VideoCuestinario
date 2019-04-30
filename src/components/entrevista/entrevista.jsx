@@ -30,6 +30,8 @@ class App extends Component {
   }
 
   render () {
+    // console.log("2")
+    // console.log('dispositivos props', this.props.pregunta)
     const propsAndComponents = {
       Header,
     }
