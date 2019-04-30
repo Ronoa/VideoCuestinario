@@ -8,6 +8,7 @@ import VOD from './components/VOD'
 import Homebase from './components/home/home';
 import Entrevista from './components/entrevista/entrevista';
 import Contenido from './components/contenido/contenido';
+import Videolist from './components/lists-video/lists-video';
 import Footer from './components/footer/footer';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -130,6 +131,7 @@ class App extends Component {
       <Router>
         <Route exact path="/" component={Home} />
         <Route exact path="/videoentrevista" component={videoentrevista} />
+        <Route exact path="/videos" component={videoList} />
 
       </Router>
     );
@@ -154,6 +156,14 @@ function Home() {
     <Homebase></Homebase>
     <Contenido></Contenido>
     <Footer></Footer>
+    </>
+  )
+}
+function videoList() {
+  return(
+    <>
+    <Homebase></Homebase>
+    <Videolist></Videolist>
     </>
   )
 }
