@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { PageHeader, Progress } from 'antd';
+// import { PageHeader, Progress } from 'antd';
 
 // import styled from 'styled-components'
 
@@ -19,7 +19,7 @@ import { PageHeader, Progress } from 'antd';
 // `
 
 class HeaderVOD extends Component {
-    
+
   render() {
     return (
       <div>
@@ -34,7 +34,7 @@ class HeaderVOD extends Component {
             <Progress percent={50} showInfo={false} />,
           ]}
         >
-          
+
         </PageHeaderVOD> */}
       </div>
     );

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form,Carousel } from 'antd';
+import { Carousel } from 'antd';
 import 'antd/dist/antd.css'
 import './App.css';
-import HeaderVOD from './components/HeaderVOD'
-import VOD from './components/VOD'
+// import HeaderVOD from './components/HeaderVOD'
+// import VOD from './components/VOD'
 // import {solicitaraccesodispositivos} from './components/baseconfig'
 import Homebase from './components/home/home';
 import Entrevista from './components/entrevista/entrevista';
@@ -137,7 +137,7 @@ class App extends Component {
     return (
       <Router>
         <Route exact path="/" component={Home} />
-        <Route exact path="/videoentrevista" component={videoentrevista} />
+        <Route exact path="/videoentrevista" component={videoentrevista(state)} />
         <Route exact path="/videos" component={videoList} />
 
       </Router>
@@ -174,10 +174,11 @@ function videoList() {
     </>
   )
 }
+
 function videoentrevista(props) {
-  console.log("aqui1",props.state)
+  // console.log("aqui1", state)
   const preguntasentrevista=[]
-  
+
   return (
     <div>
     <Homebase></Homebase>
@@ -187,7 +188,7 @@ function videoentrevista(props) {
     {preguntasentrevista.map((list,l)=>
     <div key={l}  id={list.id}>
       {/* <Entrevista/> */}
-    </div>    
+    </div>
     )}
     </Carousel>
     }

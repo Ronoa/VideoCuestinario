@@ -28,9 +28,8 @@ class App extends Component {
 
   render () {
 
-    const {
-      courses,
-    } = this.props;
+    // const {
+    // } = this.props;
 
     const propsAndComponents = {
       Header,
