@@ -1,12 +1,10 @@
 //- AntD trabaja con 24 rejillas
 .presentacion-video
 	h1 {pregunta.id} {pregunta.pregunta}
-	video(controls)
+	video#foo( controls autoPlay)
 	.nav
 		Row
 			Col.back-quest(span="{12}")
 				a(href='#') Atras
 			Col.next-quest(span="{12}")
 				a(href='#') Siguiente
-	//- .nav 
-	//- 	a(className='skip', href='/videoentrevista') Skip
