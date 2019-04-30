@@ -166,22 +166,10 @@ function Home() {
     </>
   )
 }
-<<<<<<< HEAD
 function videoentrevista(props) {
   console.log("aqui1",props.state)
   const preguntasentrevista=[]
   
-=======
-function videoList() {
-  return(
-    <>
-    <Homebase></Homebase>
-    <Videolist></Videolist>
-    </>
-  )
-}
-function videoentrevista() {
->>>>>>> a9815c0b0eabf3a82846ff7121b76689876af36e
   return (
     <div>
     <Homebase></Homebase>
