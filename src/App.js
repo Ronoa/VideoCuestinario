@@ -166,6 +166,14 @@ function Home() {
     </>
   )
 }
+function videoList() {
+  return(
+    <>
+    <Homebase></Homebase>
+    <Videolist></Videolist>
+    </>
+  )
+}
 function videoentrevista(props) {
   console.log("aqui1",props.state)
   const preguntasentrevista=[]
