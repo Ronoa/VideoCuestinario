@@ -30,12 +30,14 @@ class App extends Component {
   }
 
   render () {
-    // console.log("2")
-    // console.log('dispositivos props', this.props.pregunta)
+     console.log("2")
+     console.log('dispositivos props', this.props.pregunta)
+     let pregunta=this.props.pregunta
     const propsAndComponents = {
       Header,
       Row,
-      Col
+      Col,
+      pregunta
     }
 
     /* Return  template */
