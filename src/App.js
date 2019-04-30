@@ -178,14 +178,13 @@ function videoList(props) {
   return(
     <>
     <Homebase></Homebase>
+    <div className="lists-video">
       {preguntasentrevista.map((list,l)=>
-      <div key={l}  id={list.id}>
-        <Videolist
-          pregunta={list}
-        />
-      </div>
-    )}
-
+          <Videolist
+            pregunta={list}
+          />
+      )}
+    </div>
     </>
   )
 }
