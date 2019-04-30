@@ -1,39 +1,51 @@
+//- .lists-video
+//- 	Card(className="video-item" style="{{ width: 300 }}")
+//- 	h1 {pregunta.id} {pregunta.pregunta}
+//- 	video(controls)
+//- 
+//- 	.nav
+//- 		Row
+//- 			Col.back-quest(span="{12}")
+//- 				a(onClick="{this.previous}") Atras
+//- 			Col.next-quest(span="{12}")
+//- 				a(onClick="{this.next}") Siguiente
+
 .lists-video
 	Card(className="video-item"
-    style="{{ width: 300 }}"
-    )
-    .video
-      video(poster="Group18Mask.png")
-      a.play Play
-    h2 ¿Consideras tener una amplia experiencia en el tema de diseño de productos digitales?
-    
-  Card(className="video-item"
-    style="{{ width: 300 }}"
-    )
-    .video
-      video(poster="Group18Mask.png")
-      a.play Play
-    h2 ¿En donde te ves en 5 años?
-  Card(className="video-item"
-    style="{{ width: 300 }}"
-    )
-    .video
-      video(poster="Group18Mask.png")
-      a.play Play
-    h2 ¿Cuales son tus metas?
+	  style="{{ width: 300 }}"
+	  )
+	  .video
+	    video(poster="Group18Mask.png")
+	    a.play Play
+		h2 {pregunta.id} {pregunta.pregunta}
 
-  Card(className="video-item"
-    style="{{ width: 300 }}"
-    )
-    .video
-      video(poster="Group18Mask.png")
-      a.play Play
-    h2 ¿Cuales son las diferencias entre UX y UI ? Has tenido experiancia ...
-
-  Card(className="video-item"
-    style="{{ width: 300 }}"
-    )
-    .video
-      video(poster="Group18Mask.png")
-      a.play Play
-    h2 ¿Cuales son las primeras diferencias que encuentras entre UI y UX?
+	//- Card(className="video-item"
+	//-   style="{{ width: 300 }}"
+	//-   )
+	//-   .video
+	//-     video(poster="Group18Mask.png")
+	//-     a.play Play
+	//-   h2 ¿En donde te ves en 5 años?
+	//- Card(className="video-item"
+	//-   style="{{ width: 300 }}"
+	//-   )
+	//-   .video
+	//-     video(poster="Group18Mask.png")
+	//-     a.play Play
+	//-   h2 ¿Cuales son tus metas?
+	//- 
+	//- Card(className="video-item"
+	//-   style="{{ width: 300 }}"
+	//-   )
+	//-   .video
+	//-     video(poster="Group18Mask.png")
+	//-     a.play Play
+	//-   h2 ¿Cuales son las diferencias entre UX y UI ? Has tenido experiancia ...
+	//- 
+	//- Card(className="video-item"
+	//-   style="{{ width: 300 }}"
+	//-   )
+	//-   .video
+	//-     video(poster="Group18Mask.png")
+	//-     a.play Play
+	//-   h2 ¿Cuales son las primeras diferencias que encuentras entre UI y UX?

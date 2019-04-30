@@ -1,12 +1,13 @@
 //- AntD trabaja con 24 rejillas
-.presentacion-video(preguntasentrevista="{this.state.preguntasentrevista}")
-	h1 1 ¿Cuáles son las primeras diferencias que encuentras entre UX y UI?
+.presentacion-video
+	h1 {pregunta.id} {pregunta.pregunta}
 	video(controls)
+	
 	.nav
 		Row
 			Col.back-quest(span="{12}")
-				a(href='#') Atras
+				a(onClick="{this.previous}") Atras
 			Col.next-quest(span="{12}")
-				a(href='#') Siguiente
+				a(onClick="{this.next}") Siguiente
 	//- .nav 
 	//- 	a(className='skip', href='/videoentrevista') Skip

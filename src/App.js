@@ -13,6 +13,7 @@ import Footer from './components/footer/footer';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
+
   state = {
     recording: false,
     dispositivos: {},
@@ -21,12 +22,7 @@ class App extends Component {
     datamedia: [],
     isrender: true,
     ismedia: false,
-    preguntasentrevista:[
-      {id:1,pregunta:'¿Consideras tener una amplia experiencia en el tema de diseño de productos digitales?',estado:false},
-      {id:2,pregunta:'¿En donde te ves en 5 años?',estado:false},
-      {id:3,pregunta:'¿Cuáles son tus metas?',estado:false},
-      {id:4,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI? Has tenido experiencia',estado:false},
-      {id:5,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI?',estado:false}],
+
 
 
     pregunta1: [],
@@ -36,6 +32,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     // this.parametrosvideo();
 
   }
@@ -132,12 +129,16 @@ class App extends Component {
     }
   }
 
+
+
   render() {
+
+
 
     return (
       <Router>
         <Route exact path="/" component={Home} />
-        <Route exact path="/videoentrevista" component={videoentrevista(state)} />
+        <Route exact path="/videoentrevista" component={videoentrevista}/>
         <Route exact path="/videos" component={videoList} />
 
       </Router>
@@ -166,32 +167,53 @@ function Home() {
     </>
   )
 }
-function videoList() {
+function videoList(props) {
+  const preguntasentrevista=[
+      {id:1,pregunta:'¿Consideras tener una amplia experiencia en el tema de diseño de productos digitales?',estado:false},
+      {id:2,pregunta:'¿En donde te ves en 5 años?',estado:false},
+      {id:3,pregunta:'¿Cuáles son tus metas?',estado:false},
+      {id:4,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI? Has tenido experiencia',estado:false},
+      {id:5,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI?',estado:false}
+  ]
   return(
     <>
     <Homebase></Homebase>
-    <Videolist></Videolist>
+      {preguntasentrevista.map((list,l)=>
+      <div key={l}  id={list.id}>
+        <Videolist
+          pregunta={list}
+        />
+      </div>
+    )}
+
     </>
   )
 }
 
 function videoentrevista(props) {
-  // console.log("aqui1", state)
-  const preguntasentrevista=[]
+  console.log("aqui1",props)
+  const preguntasentrevista=[
+      {id:1,pregunta:'¿Consideras tener una amplia experiencia en el tema de diseño de productos digitales?',estado:false},
+      {id:2,pregunta:'¿En donde te ves en 5 años?',estado:false},
+      {id:3,pregunta:'¿Cuáles son tus metas?',estado:false},
+      {id:4,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI? Has tenido experiencia',estado:false},
+      {id:5,pregunta:'¿Cuáles son las primeras diferencias que encuentras entre UX y UI?',estado:false}
+  ]
 
   return (
     <div>
     <Homebase></Homebase>
-    {preguntasentrevista &
+
     // afterChange={onChange}
     <Carousel  >
     {preguntasentrevista.map((list,l)=>
     <div key={l}  id={list.id}>
-      {/* <Entrevista/> */}
+      <Entrevista
+        pregunta={list}
+      />
     </div>
     )}
     </Carousel>
-    }
     </div>
   );
 }
