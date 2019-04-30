@@ -1,23 +1,20 @@
 import {
   Component
-  //React
   // PropTypes
 } from 'react';
-// import React from 'react';
 
 /* Templates */
-import Entrevistapug from './entrevista.pug';
+import homeTemplate from './contenido.pug';
+
 /* AntD components */
 import { Layout} from 'antd';
 
 /* Styles */
-import './entrevista.styl';
-// import Entrevista from './entrevista';
+import './contenido.styl';
 
 const { Header } = Layout;
 
 class App extends Component {
-// export default class entrevista extends React.PureComponent {
   /* Constructor y render necesarios */
   constructor ( ...props ) {
     /* Super contructor de component */
@@ -30,12 +27,18 @@ class App extends Component {
   }
 
   render () {
+
+    const {
+      courses,
+    } = this.props;
+
     const propsAndComponents = {      
-      Header
+      Header,      
     }
     
     /* Return  template */
-    return Entrevistapug.call(this, propsAndComponents);  
+    return homeTemplate.call(this, propsAndComponents);
+    
   }
 }
 /* Definimos los  tipos de propiedades */

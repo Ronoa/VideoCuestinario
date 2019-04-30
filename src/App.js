@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'antd';
+import { Button, Form,Carousel } from 'antd';
 import 'antd/dist/antd.css'
-// import './App.css';
+import './App.css';
 import HeaderVOD from './components/HeaderVOD'
 import VOD from './components/VOD'
 // import {solicitaraccesodispositivos} from './components/baseconfig'
 import Homebase from './components/home/home';
 import Entrevista from './components/entrevista/entrevista';
+import Contenido from './components/contenido/contenido';
+import Footer from './components/footer/footer';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
@@ -24,8 +26,6 @@ class App extends Component {
     pregunta3: [],
     pregunta4: [],
   }
-
-
 
   componentDidMount() {
     // this.parametrosvideo();
@@ -128,7 +128,7 @@ class App extends Component {
 
     return (
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Route exact path="/" component={Home} />
         <Route exact path="/videoentrevista" component={videoentrevista} />
         <div className="App">
@@ -173,10 +173,30 @@ function Header() {
   );
 }
 function Home() {
-  return <Homebase></Homebase>;
+  return( 
+    <>
+    <Homebase></Homebase>
+    <Footer></Footer>
+    <Contenido></Contenido>    
+    </>
+  )
 }
 function videoentrevista() {
-  return <Entrevista></Entrevista>;
+  return (
+    <>
+    <Homebase></Homebase>
+    <Carousel  afterChange={onChange}>
+    <div><h3><Entrevista></Entrevista></h3></div>
+    <div><h3><Entrevista></Entrevista></h3></div>
+    <div><h3><Entrevista></Entrevista></h3></div>
+    <div><h3><Entrevista></Entrevista></h3></div>
+    </Carousel>
+    
+    </>
+  );
+}
+function onChange(a, b, c) {
+  console.log(a, b, c);
 }
 
 export default App;
