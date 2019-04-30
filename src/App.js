@@ -202,8 +202,7 @@ function videoentrevista(props) {
   return (
     <div>
     <Homebase></Homebase>
-
-    // afterChange={onChange}
+    <video controls></video>
     <Carousel  >
     {preguntasentrevista.map((list,l)=>
     <div key={l}  id={list.id}>
